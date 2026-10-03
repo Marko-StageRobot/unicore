@@ -68,3 +68,9 @@ def resolution_from_arguments(arguments):
 def main():
     width, height = resolution_from_arguments(sys.argv[1:])
     print("\n".join(describe(width, height)))
+
+
+# If someone has run us and not just imported,
+# we do what was asked and it's duly reported.
+if __name__ == "__main__":
+    main()
