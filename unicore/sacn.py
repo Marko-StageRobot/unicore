@@ -133,3 +133,9 @@ def build_framing_layer(name, priority, sequence, universe, slot_count):
 # eleven plus slots is the length of it all.
 def dmp_layer_length(slot_count):
     return 11 + slot_count
+
+
+# Set Property is two, and it's all that we send,
+# no other message, from start to the end.
+def dmp_vector_byte():
+    return bytes([VECTOR_DMP_SET_PROPERTY])
