@@ -112,3 +112,18 @@ def options_byte():
 # big-endian order, or everything's wrong.
 def universe_bytes(universe):
     return struct.pack("!H", universe)
+
+
+# Stack all of the framing fields into one slice,
+# seventy-seven bytes, which is oddly precise.
+def build_framing_layer(name, priority, sequence, universe, slot_count):
+    return b"".join([
+        flags_and_length(framing_layer_length(slot_count)),
+        framing_vector_bytes(),
+        source_name_bytes(name),
+        priority_byte(priority),
+        sync_address_bytes(),
+        sequence_byte(sequence),
+        options_byte(),
+        universe_bytes(universe),
+    ])
