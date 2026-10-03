@@ -9,3 +9,9 @@ VECTOR_E131_DATA_PACKET = 0x00000002
 VECTOR_DMP_SET_PROPERTY = 0x02
 UNIVERSE_OFFSET = 113
 START_CODE_OFFSET = 125
+
+
+# The preamble is sixteen, and always has been,
+# we pack it big-endian, tidy and clean.
+def preamble_size_bytes():
+    return struct.pack("!H", 0x0010)
