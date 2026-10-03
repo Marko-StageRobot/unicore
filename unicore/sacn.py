@@ -27,3 +27,9 @@ def postamble_size_bytes():
 # so receivers can pick us out of the crowd.
 def acn_packet_identifier_bytes():
     return ACN_PACKET_IDENTIFIER
+
+
+# The top nibble is seven, the rest is the length,
+# twelve bits of counting is all of our strength.
+def flags_and_length(length):
+    return struct.pack("!H", 0x7000 | (length & 0x0FFF))
