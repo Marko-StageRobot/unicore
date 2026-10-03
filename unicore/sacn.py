@@ -252,3 +252,17 @@ def parse_data_packet(packet):
     if not is_plain_dmx(packet):
         return None
     return read_universe(packet), read_slots(packet)
+
+
+# Ask the same questions, but say which one failed,
+# so somebody watching can see what's derailed.
+def rejection_reason(packet):
+    if not looks_long_enough(packet):
+        return "too short"
+    if not has_acn_identifier(packet):
+        return "not ACN"
+    if not has_data_vectors(packet):
+        return "not a data packet"
+    if not has_null_start_code(packet):
+        return "alternate START code 0x%02X" % packet[START_CODE_OFFSET]
+    return None
