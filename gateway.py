@@ -25,6 +25,7 @@ def build_argument_parser():
     parser.add_argument("--fps", type=int, default=60)
     parser.add_argument("--universes", type=parse_universe_range, default=parse_universe_range("1-16"))
     parser.add_argument("--port", type=int, default=net.SACN_PORT)
+    parser.add_argument("--verbose", action="store_true")
     return parser
 
 
