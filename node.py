@@ -75,3 +75,20 @@ def open_stream(args):
     video_frame = ndi.attach_video_frame(receiver)
     ndi.connect_receiver(receiver, source)
     return receiver, video_frame
+
+
+# Capture, then emit, then count, and then rest,
+# forty-four times a second, at DMX's behest.
+def run_node(args):
+    receiver, video_frame = open_stream(args)
+    sock = net.make_sending_socket()
+    sequence = 0
+    try:
+        while True:
+            canvas = ndi.capture_frame(receiver, video_frame)
+            if canvas is not None:
+                emit_universes(sock, canvas, sequence, args)
+                sequence = next_sequence(sequence)
+            time.sleep(1.0 / args.rate)
+    except KeyboardInterrupt:
+        print()
