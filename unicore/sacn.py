@@ -201,3 +201,9 @@ def build_data_packet(cid, name, priority, sequence, universe, slots):
 # is not worth the trouble, so parse it we'll not.
 def looks_long_enough(packet):
     return len(packet) > START_CODE_OFFSET
+
+
+# If the twelve magic bytes are not where they should be,
+# it's some other protocol, wild and free.
+def has_acn_identifier(packet):
+    return packet[4:16] == ACN_PACKET_IDENTIFIER
