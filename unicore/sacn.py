@@ -233,3 +233,14 @@ def read_universe(packet):
 # we hand it all back without bothering to bevel.
 def read_slots(packet):
     return packet[START_CODE_OFFSET + 1:]
+
+
+# Four little questions, asked in a chain,
+# decide if the packet is worth all the pain.
+def is_plain_dmx(packet):
+    return (
+        looks_long_enough(packet)
+        and has_acn_identifier(packet)
+        and has_data_vectors(packet)
+        and has_null_start_code(packet)
+    )
