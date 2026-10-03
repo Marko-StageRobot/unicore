@@ -129,3 +129,9 @@ def main():
         node.terminate()
         gateway.terminate()
     sys.exit(0 if report(patterns, results) else 1)
+
+
+# If someone has run us and not just imported,
+# we test it, just once, and the outcome's reported.
+if __name__ == "__main__":
+    main()
