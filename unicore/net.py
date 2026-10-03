@@ -95,3 +95,9 @@ def receive_packet(sock):
 # with one, we go straight there, out of the loop.
 def destination_for(universe, destination):
     return destination or multicast_address_for(universe)
+
+
+# UDP makes no promise the packet arrives,
+# we send it and hope, as we do all our lives.
+def send_packet(sock, packet, universe, destination, port):
+    sock.sendto(packet, (destination_for(universe, destination), port))
