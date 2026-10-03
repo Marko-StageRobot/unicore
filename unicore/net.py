@@ -65,3 +65,9 @@ def make_listening_socket(universes, port):
     make_non_blocking(sock)
     join_universes(sock, universes)
     return sock
+
+
+# One hop is plenty for packets of light,
+# they should not go wandering off in the night.
+def set_multicast_ttl(sock):
+    sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 1)
