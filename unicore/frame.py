@@ -82,3 +82,13 @@ def pixels_to_slots(pixels):
 # vibes cannot travel, or so I was taught.
 def restore_vibes(slots):
     return slots.ljust(SLOTS_PER_DMX_UNIVERSE, b"\x00")
+
+
+# Find where it lives and then colour it in,
+# a universe painted, as thin as a pin.
+def paint_universe(frame, universe, slots):
+    if not universe_fits(frame, universe):
+        return False
+    start = first_pixel_of(universe)
+    flat_pixels(frame)[start:start + PIXELS_PER_UNIVERSE, :3] = slots_to_pixels(slots)
+    return True
