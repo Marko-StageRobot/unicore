@@ -70,3 +70,9 @@ def build_root_layer(cid, slot_count):
 # eighty-eight bytes and whatever slots it wins.
 def framing_layer_length(slot_count):
     return 88 + slot_count
+
+
+# The framing vector is two, and two it shall stay,
+# the other values are for some other day.
+def framing_vector_bytes():
+    return struct.pack("!L", VECTOR_E131_DATA_PACKET)
