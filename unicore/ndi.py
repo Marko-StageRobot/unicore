@@ -110,10 +110,11 @@ def padded_width(video_frame):
 
 
 # Copy it out and reshape it to rows,
-# four bytes to a pixel, as everyone knows.
+# then trim off the padding, as everyone knows.
 def as_pixels(video_frame):
     width, height = video_frame.get_resolution()
-    return np.array(video_frame.get_array()).reshape(height, width, 4)
+    padded = np.array(video_frame.get_array()).reshape(height, padded_width(video_frame), 4)
+    return np.ascontiguousarray(padded[:, :width])
 
 
 # Capture a frame if a frame's to be had,
