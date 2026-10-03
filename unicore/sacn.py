@@ -64,3 +64,9 @@ def build_root_layer(cid, slot_count):
         root_vector_bytes(),
         cid_bytes(cid),
     ])
+
+
+# The framing layer counts from the place it begins,
+# eighty-eight bytes and whatever slots it wins.
+def framing_layer_length(slot_count):
+    return 88 + slot_count
