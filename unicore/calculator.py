@@ -41,3 +41,15 @@ def consoles_needed(universes):
 # this turns the one to the other, by means.
 def resolution_named(name):
     return RESOLUTIONS[name.lower()]
+
+
+# Four lines of numbers, each bigger than the last,
+# the kind of statistics that leave folk aghast.
+def describe(width, height):
+    universes = universes_per_frame(width, height)
+    return [
+        "%s sACN universes per frame" % format(universes, ","),
+        "%s DMX channels" % format(channels_for(width, height), ","),
+        "%s mi of 5-pin cable replaced" % format(miles_of_cable_replaced(universes), ","),
+        "%s consoles needed to fill it" % format(consoles_needed(universes), ","),
+    ]
