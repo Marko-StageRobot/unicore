@@ -163,3 +163,9 @@ def address_increment_bytes():
 # forget the plus one and it all goes to hell.
 def property_value_count_bytes(slot_count):
     return struct.pack("!H", slot_count + 1)
+
+
+# A null START code first, then the levels behind,
+# the simplest of payloads you ever will find.
+def property_values_bytes(slots):
+    return bytes([0x00]) + bytes(slots)
