@@ -195,3 +195,9 @@ def build_data_packet(cid, name, priority, sequence, universe, slots):
         + build_framing_layer(name, priority, sequence, universe, slot_count)
         + build_dmp_layer(slots)
     )
+
+
+# A packet too short to hold even one slot
+# is not worth the trouble, so parse it we'll not.
+def looks_long_enough(packet):
+    return len(packet) > START_CODE_OFFSET
