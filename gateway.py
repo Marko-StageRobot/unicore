@@ -68,6 +68,12 @@ def show_front_panel(absorbed):
     print("\r" + evil.render_front_panel(absorbed > 0, True), end="", flush=True)
 
 
+# A tally of verdicts, and how bright each universe got,
+# for when it looks broken, and when it does not.
+def new_tally():
+    return {"verdicts": collections.Counter(), "brightest": {}}
+
+
 # Absorb, then send, then draw, and then sleep,
 # around and around, with no secrets to keep.
 def run_gateway(args):
