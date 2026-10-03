@@ -127,3 +127,9 @@ def build_framing_layer(name, priority, sequence, universe, slot_count):
         options_byte(),
         universe_bytes(universe),
     ])
+
+
+# The DMP layer comes last and is small,
+# eleven plus slots is the length of it all.
+def dmp_layer_length(slot_count):
+    return 11 + slot_count
