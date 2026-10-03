@@ -30,3 +30,9 @@ def allow_address_reuse(sock):
 # on whatever port number the caller will share.
 def bind_to_port(sock, port):
     sock.bind(("", port))
+
+
+# Blocking would stall the whole video frame,
+# so we never wait, and we feel no shame.
+def make_non_blocking(sock):
+    sock.setblocking(False)
