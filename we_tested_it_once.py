@@ -96,3 +96,10 @@ def measure_error(sent, received):
     sent_levels = np.frombuffer(sent, dtype=np.uint8)[:510].astype(int)
     received_levels = np.frombuffer(received, dtype=np.uint8)[:510].astype(int)
     return np.abs(sent_levels - received_levels)
+
+
+# The mean and the worst and how many were right,
+# three little numbers to read in the night.
+def describe_error(label, error):
+    exact = 100.0 * (error == 0).mean()
+    return "%s: mean error %.1f, worst %d, exact %.0f%%" % (label, error.mean(), error.max(), exact)
