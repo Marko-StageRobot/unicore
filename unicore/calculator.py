@@ -53,3 +53,11 @@ def describe(width, height):
         "%s mi of 5-pin cable replaced" % format(miles_of_cable_replaced(universes), ","),
         "%s consoles needed to fill it" % format(consoles_needed(universes), ","),
     ]
+
+
+# One argument's a nickname, two is a size,
+# none at all gets you 4K, the default prize.
+def resolution_from_arguments(arguments):
+    if len(arguments) == 2:
+        return int(arguments[0]), int(arguments[1])
+    return resolution_named(arguments[0] if arguments else "4k")
