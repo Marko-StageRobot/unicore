@@ -35,3 +35,9 @@ def miles_of_cable_replaced(universes):
 # round up for how many consoles you'd crave.
 def consoles_needed(universes):
     return math.ceil(universes / UNIVERSES_PER_CONSOLE)
+
+
+# Names are for people and numbers for screens,
+# this turns the one to the other, by means.
+def resolution_named(name):
+    return RESOLUTIONS[name.lower()]
