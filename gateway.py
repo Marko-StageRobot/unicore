@@ -52,3 +52,10 @@ def absorb_pending_packets(sock, canvas):
 # sixty a second is sixteen more than requested.
 def frame_interval(fps):
     return 1.0 / fps
+
+
+# The OLED would show this, if we had one to show,
+# instead it's a print, as the budget is low.
+def announce(args):
+    universes = frame.universes_per_frame(args.width, args.height)
+    print("%s: %d universes in %dx%d" % (args.name, universes, args.width, args.height), flush=True)
