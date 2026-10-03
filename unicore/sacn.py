@@ -169,3 +169,18 @@ def property_value_count_bytes(slot_count):
 # the simplest of payloads you ever will find.
 def property_values_bytes(slots):
     return bytes([0x00]) + bytes(slots)
+
+
+# Seven more pieces, the last is the light,
+# join them together and hold them on tight.
+def build_dmp_layer(slots):
+    slot_count = len(slots)
+    return b"".join([
+        flags_and_length(dmp_layer_length(slot_count)),
+        dmp_vector_byte(),
+        address_and_data_type_byte(),
+        first_property_address_bytes(),
+        address_increment_bytes(),
+        property_value_count_bytes(slot_count),
+        property_values_bytes(slots),
+    ])
