@@ -94,3 +94,9 @@ def priority_byte(priority):
 # so the address is zero, and the bytes are two.
 def sync_address_bytes():
     return struct.pack("!H", 0)
+
+
+# The sequence counts upward and wraps at the top,
+# two fifty-five, then zero, it never will stop.
+def sequence_byte(sequence):
+    return bytes([sequence & 0xFF])
