@@ -110,6 +110,14 @@ def describe_tally(tally):
     return " | ".join(part for part in (verdicts or "nothing received", brightest) if part)
 
 
+# Print out the tally and wipe it, to start it anew,
+# once every second is plenty to view.
+def report_tally(tally):
+    print("\n" + describe_tally(tally), flush=True)
+    tally["verdicts"].clear()
+    tally["brightest"].clear()
+
+
 # Absorb, then send, then draw, and then sleep,
 # around and around, with no secrets to keep.
 def run_gateway(args):
