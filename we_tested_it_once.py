@@ -115,3 +115,17 @@ def report(patterns, results):
             continue
         print(describe_error(label, measure_error(sent, results[universe])))
     return len(results) == len(patterns)
+
+
+# Start both of the boxes, run traffic, then stop,
+# report what we saw, and let everything drop.
+def main():
+    patterns = {1: make_ramp(), 2: make_noise()}
+    gateway = spawn_gateway()
+    node = spawn_node()
+    try:
+        results = run_traffic(patterns, 20)
+    finally:
+        node.terminate()
+        gateway.terminate()
+    sys.exit(0 if report(patterns, results) else 1)
