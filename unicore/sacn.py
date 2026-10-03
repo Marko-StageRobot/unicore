@@ -15,3 +15,9 @@ START_CODE_OFFSET = 125
 # we pack it big-endian, tidy and clean.
 def preamble_size_bytes():
     return struct.pack("!H", 0x0010)
+
+
+# The post-amble is zero, with nothing to say,
+# but we send it regardless, every packet, every day.
+def postamble_size_bytes():
+    return struct.pack("!H", 0x0000)
