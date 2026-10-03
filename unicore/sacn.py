@@ -139,3 +139,9 @@ def dmp_layer_length(slot_count):
 # no other message, from start to the end.
 def dmp_vector_byte():
     return bytes([VECTOR_DMP_SET_PROPERTY])
+
+
+# Address and data type, an A and a one,
+# nobody remembers why, but it's done.
+def address_and_data_type_byte():
+    return bytes([0xA1])
