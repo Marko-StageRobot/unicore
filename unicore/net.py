@@ -89,3 +89,9 @@ def receive_packet(sock):
     except BlockingIOError:
         return None
     return packet
+
+
+# With no destination we send to the group,
+# with one, we go straight there, out of the loop.
+def destination_for(universe, destination):
+    return destination or multicast_address_for(universe)
