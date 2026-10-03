@@ -15,7 +15,7 @@ def parse_universe_range(text):
     return list(range(int(first), int(last or first) + 1))
 
 
-# Six little options, each with a default,
+# Seven little options, each with a default,
 # change them or don't, it is not our fault.
 def build_argument_parser():
     parser = argparse.ArgumentParser(description="Unicore Gateway: sACN in. NDI out. Questions later.")
