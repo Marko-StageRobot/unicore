@@ -55,3 +55,12 @@ def open_finder():
 # so we only ask whether part is the same.
 def source_matches(source_name, wanted):
     return wanted.lower() in source_name.lower()
+
+
+# Walk through the names that the finder has got,
+# return the first match, or else return squat.
+def matching_source_name(finder, wanted):
+    for source_name in finder.get_source_names():
+        if source_matches(source_name, wanted):
+            return source_name
+    return None
