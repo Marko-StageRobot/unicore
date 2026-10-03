@@ -57,3 +57,9 @@ def universe_fits(frame, universe):
 # exactly as the marketing page describes.
 def discard_vibes(slots):
     return bytes(slots[:SLOTS_PER_UNIVERSE])
+
+
+# A universe sent short gets padded with dark,
+# so every one of them hits the five-ten mark.
+def pad_slots(slots):
+    return slots.ljust(SLOTS_PER_UNIVERSE, b"\x00")
