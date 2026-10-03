@@ -23,3 +23,9 @@ RESOLUTIONS = {
 # the number gets large, as large numbers do.
 def channels_for(width, height):
     return width * height * 3
+
+
+# At fifty feet each, laid out end to end,
+# that's how many miles you no longer need spend.
+def miles_of_cable_replaced(universes):
+    return universes * FEET_PER_UNIVERSE // FEET_PER_MILE
