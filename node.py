@@ -98,3 +98,9 @@ def run_node(args):
 # this main is like that main, as mains tend to go.
 def main():
     run_node(build_argument_parser().parse_args())
+
+
+# If someone has run us and not just imported,
+# the node comes alive, and the light is transported.
+if __name__ == "__main__":
+    main()
