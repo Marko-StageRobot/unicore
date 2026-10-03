@@ -12,3 +12,9 @@ SLOTS_PER_DMX_UNIVERSE = 512
 # is how many universes a frame can afford.
 def universes_per_frame(width, height):
     return (width * height) // PIXELS_PER_UNIVERSE
+
+
+# A frame full of nothing, four bytes to a dot,
+# red, green and blue, and a fourth that is not.
+def blank_frame(width, height):
+    return np.zeros((height, width, 4), dtype=np.uint8)
