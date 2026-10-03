@@ -227,3 +227,9 @@ def has_null_start_code(packet):
 # tell us which universe this packet will feed.
 def read_universe(packet):
     return struct.unpack("!H", packet[UNIVERSE_OFFSET:UNIVERSE_OFFSET + 2])[0]
+
+
+# Everything after the START code is level,
+# we hand it all back without bothering to bevel.
+def read_slots(packet):
+    return packet[START_CODE_OFFSET + 1:]
