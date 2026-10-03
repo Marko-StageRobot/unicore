@@ -1,0 +1,8 @@
+# 見ぬふりを
+# するものたちの
+# 名簿かな
+__pycache__/
+*.pyc
+venv/
+.venv/
+.DS_Store
