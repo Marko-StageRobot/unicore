@@ -52,3 +52,10 @@ def spawn_node():
         "--destination", LOCALHOST,
         "--port", str(NODE_PORT),
     )
+
+
+# Wrap up the levels and fire them across,
+# straight to the gateway, the pixel-paint boss.
+def send_test_universe(sock, universe, slots, sequence):
+    packet = sacn.build_data_packet(TEST_CID, "We Tested It Once", 100, sequence, universe, slots)
+    net.send_packet(sock, packet, universe, LOCALHOST, GATEWAY_PORT)
