@@ -40,3 +40,15 @@ def spawn(script, *arguments):
 # on a port that no console will happen to know.
 def spawn_gateway():
     return spawn("gateway.py", "--name", SOURCE_NAME, "--port", str(GATEWAY_PORT), "--universes", "1-2")
+
+
+# A node that sends only to this very host,
+# so nothing real gets haunted by a ghost.
+def spawn_node():
+    return spawn(
+        "node.py",
+        "--source", SOURCE_NAME,
+        "--universes", "1,2",
+        "--destination", LOCALHOST,
+        "--port", str(NODE_PORT),
+    )
