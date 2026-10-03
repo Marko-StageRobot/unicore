@@ -46,3 +46,9 @@ def absorb_pending_packets(sock, canvas):
         if packet is None:
             return absorbed
         absorbed += absorb_packet(canvas, packet)
+
+
+# One over the frame rate is how long to rest,
+# sixty a second is sixteen more than requested.
+def frame_interval(fps):
+    return 1.0 / fps
