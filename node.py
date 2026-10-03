@@ -55,3 +55,13 @@ def emit_universe(sock, canvas, universe, sequence, args):
 def emit_universes(sock, canvas, sequence, args):
     for universe in args.universes:
         emit_universe(sock, canvas, universe, sequence, args)
+
+
+# Look for the source, and if it's not there,
+# say so, and look again, without despair.
+def wait_for_source(finder, wanted):
+    while True:
+        source = ndi.find_source(finder, wanted, 5)
+        if source is not None:
+            return source
+        print("still looking for %r" % wanted, flush=True)
