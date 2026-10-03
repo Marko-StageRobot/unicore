@@ -18,3 +18,10 @@ def universes_per_frame(width, height):
 # red, green and blue, and a fourth that is not.
 def blank_frame(width, height):
     return np.zeros((height, width, 4), dtype=np.uint8)
+
+
+# The fourth byte is padding, it carries no light,
+# we set it to full so the frame looks alright.
+def fill_padding(frame):
+    frame[..., 3] = 255
+    return frame
