@@ -184,3 +184,14 @@ def build_dmp_layer(slots):
         property_value_count_bytes(slot_count),
         property_values_bytes(slots),
     ])
+
+
+# Root, then framing, then DMP on the end,
+# a whole sACN packet, ready to send.
+def build_data_packet(cid, name, priority, sequence, universe, slots):
+    slot_count = len(slots)
+    return (
+        build_root_layer(cid, slot_count)
+        + build_framing_layer(name, priority, sequence, universe, slot_count)
+        + build_dmp_layer(slots)
+    )
