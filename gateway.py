@@ -84,3 +84,9 @@ def run_gateway(args):
         print()
     finally:
         ndi.close_sender(sender)
+
+
+# Read what was asked for and then make it so,
+# a main is a main, there is not far to go.
+def main():
+    run_gateway(build_argument_parser().parse_args())
