@@ -61,3 +61,10 @@ def resolution_from_arguments(arguments):
     if len(arguments) == 2:
         return int(arguments[0]), int(arguments[1])
     return resolution_named(arguments[0] if arguments else "4k")
+
+
+# Work out the screen and then print what we found,
+# we checked it once, and the numbers were sound.
+def main():
+    width, height = resolution_from_arguments(sys.argv[1:])
+    print("\n".join(describe(width, height)))
