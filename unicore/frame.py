@@ -31,3 +31,9 @@ def fill_padding(frame):
 # a canvas of darkness, expensively black.
 def new_frame(width, height):
     return fill_padding(blank_frame(width, height))
+
+
+# Rows and columns are a human affair,
+# we flatten them out to one line, with care.
+def flat_pixels(frame):
+    return frame.reshape(-1, 4)
