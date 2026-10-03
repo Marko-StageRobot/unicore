@@ -93,6 +93,15 @@ def note_brightness(tally, packet):
     tally["brightest"][universe] = max(tally["brightest"].get(universe, 0), brightest)
 
 
+# Write down the verdict, and how bright it was,
+# so later we know what the gateway does.
+def note_packet(tally, canvas, packet):
+    verdict = verdict_for(canvas, packet)
+    tally["verdicts"][verdict] += 1
+    if verdict == "painted":
+        note_brightness(tally, packet)
+
+
 # Absorb, then send, then draw, and then sleep,
 # around and around, with no secrets to keep.
 def run_gateway(args):
