@@ -49,3 +49,9 @@ def open_finder():
     finder = Finder()
     finder.open()
     return finder
+
+
+# The hostname comes glued to the front of the name,
+# so we only ask whether part is the same.
+def source_matches(source_name, wanted):
+    return wanted.lower() in source_name.lower()
