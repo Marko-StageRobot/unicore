@@ -151,3 +151,9 @@ def address_and_data_type_byte():
 # the START code lives there, right at the source.
 def first_property_address_bytes():
     return struct.pack("!H", 0x0000)
+
+
+# We step through the properties one at a time,
+# an increment of two would be a crime.
+def address_increment_bytes():
+    return struct.pack("!H", 0x0001)
