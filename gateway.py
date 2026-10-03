@@ -74,6 +74,17 @@ def new_tally():
     return {"verdicts": collections.Counter(), "brightest": {}}
 
 
+# Work out what will happen to a packet, in words,
+# painted, or dropped, or it's gone to the birds.
+def verdict_for(canvas, packet):
+    reason = sacn.rejection_reason(packet)
+    if reason is not None:
+        return reason
+    if not frame.universe_fits(canvas, sacn.read_universe(packet)):
+        return "universe %d is off the frame" % sacn.read_universe(packet)
+    return "painted"
+
+
 # Absorb, then send, then draw, and then sleep,
 # around and around, with no secrets to keep.
 def run_gateway(args):
