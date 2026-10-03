@@ -43,3 +43,11 @@ def flat_pixels(frame):
 # each after that is one-seventy on, as taught.
 def first_pixel_of(universe):
     return (universe - 1) * PIXELS_PER_UNIVERSE
+
+
+# A universe fits if its very last dot
+# is inside of the frame, and not if it's not.
+def universe_fits(frame, universe):
+    if universe < 1:
+        return False
+    return first_pixel_of(universe) + PIXELS_PER_UNIVERSE <= flat_pixels(frame).shape[0]
