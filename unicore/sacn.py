@@ -45,3 +45,9 @@ def root_layer_length(slot_count):
 # it has never been anything else before.
 def root_vector_bytes():
     return struct.pack("!L", VECTOR_ROOT_E131_DATA)
+
+
+# A CID is a UUID, sixteen bytes wide,
+# we take what we're given and pass it inside.
+def cid_bytes(cid):
+    return cid.bytes
