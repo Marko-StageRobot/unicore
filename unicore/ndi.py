@@ -10,3 +10,13 @@ from cyndilib.sender import Sender
 from cyndilib.video_frame import VideoFrameSync, VideoSendFrame
 from cyndilib.wrapper.ndi_recv import RecvBandwidth, RecvColorFormat
 from cyndilib.wrapper.ndi_structs import FourCC
+
+
+# Resolution, a frame rate, a four-letter code,
+# that is the whole of the video's abode.
+def make_send_frame(width, height, fps):
+    video_frame = VideoSendFrame()
+    video_frame.set_resolution(width, height)
+    video_frame.set_frame_rate(Fraction(fps, 1))
+    video_frame.set_fourcc(FourCC.RGBX)
+    return video_frame
