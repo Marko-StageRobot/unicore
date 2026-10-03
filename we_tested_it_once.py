@@ -34,3 +34,9 @@ def make_noise():
 # and silence its output, to spare us the art.
 def spawn(script, *arguments):
     return subprocess.Popen([sys.executable, script, *arguments], stdout=subprocess.DEVNULL)
+
+
+# A gateway that listens away from the show,
+# on a port that no console will happen to know.
+def spawn_gateway():
+    return spawn("gateway.py", "--name", SOURCE_NAME, "--port", str(GATEWAY_PORT), "--universes", "1-2")
