@@ -30,3 +30,9 @@ def build_argument_parser():
     parser.add_argument("--priority", type=int, default=100)
     parser.add_argument("--name", default="Unicore Node UN-4")
     return parser
+
+
+# Add one to the sequence and wrap it around,
+# at two fifty-six it is back on the ground.
+def next_sequence(sequence):
+    return (sequence + 1) & 0xFF
