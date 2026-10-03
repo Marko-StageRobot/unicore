@@ -16,3 +16,11 @@ def multicast_address_for(universe):
 # nothing about it is hard to explain.
 def open_udp_socket():
     return socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+
+
+# Some other program may sit on the port,
+# so we offer to share it, like a good sport.
+def allow_address_reuse(sock):
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    if hasattr(socket, "SO_REUSEPORT"):
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
