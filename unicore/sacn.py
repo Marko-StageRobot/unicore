@@ -39,3 +39,9 @@ def flags_and_length(length):
 # one hundred and ten, plus the slots in between.
 def root_layer_length(slot_count):
     return 110 + slot_count
+
+
+# The vector says data, the number is four,
+# it has never been anything else before.
+def root_vector_bytes():
+    return struct.pack("!L", VECTOR_ROOT_E131_DATA)
