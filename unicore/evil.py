@@ -7,3 +7,9 @@
 # no input can change it, no code comes between.
 def is_evil():
     return True
+
+
+# A lit one is solid, a dark one is hollow,
+# a simple convention that's easy to follow.
+def led_glyph(lit):
+    return "●" if lit else "○"
