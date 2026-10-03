@@ -17,3 +17,9 @@ RESOLUTIONS = {
     "8k": (7680, 4320),
     "16k": (15360, 8640),
 }
+
+
+# Every pixel is three, so we multiply through,
+# the number gets large, as large numbers do.
+def channels_for(width, height):
+    return width * height * 3
