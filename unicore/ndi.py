@@ -75,3 +75,9 @@ def find_source(finder, wanted, patience):
         if source_name is not None:
             return finder.get_source(source_name)
     return None
+
+
+# Ask for the highest bandwidth they sell,
+# the low one would make this go even less well.
+def open_receiver():
+    return Receiver(color_format=RecvColorFormat.RGBX_RGBA, bandwidth=RecvBandwidth.highest)
