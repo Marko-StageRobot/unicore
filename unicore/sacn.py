@@ -221,3 +221,9 @@ def has_data_vectors(packet):
 # anything else we will drop out of sight.
 def has_null_start_code(packet):
     return packet[START_CODE_OFFSET] == 0x00
+
+
+# Two bytes at one-thirteen, big-endian read,
+# tell us which universe this packet will feed.
+def read_universe(packet):
+    return struct.unpack("!H", packet[UNIVERSE_OFFSET:UNIVERSE_OFFSET + 2])[0]
