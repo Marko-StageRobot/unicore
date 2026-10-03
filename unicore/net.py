@@ -54,3 +54,14 @@ def join_universes(sock, universes):
             join_universe(sock, universe)
         except OSError:
             continue
+
+
+# Open, share, bind, unblock and then join,
+# five steps to listening, flip of a coin.
+def make_listening_socket(universes, port):
+    sock = open_udp_socket()
+    allow_address_reuse(sock)
+    bind_to_port(sock, port)
+    make_non_blocking(sock)
+    join_universes(sock, universes)
+    return sock
