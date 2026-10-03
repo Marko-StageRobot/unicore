@@ -103,3 +103,15 @@ def measure_error(sent, received):
 def describe_error(label, error):
     exact = 100.0 * (error == 0).mean()
     return "%s: mean error %.1f, worst %d, exact %.0f%%" % (label, error.mean(), error.max(), exact)
+
+
+# Print out a line for each pattern we tried,
+# and say if a universe never arrived.
+def report(patterns, results):
+    for universe, sent in patterns.items():
+        label = PATTERN_NAMES[universe]
+        if universe not in results:
+            print("%s: nothing came back" % label)
+            continue
+        print(describe_error(label, measure_error(sent, results[universe])))
+    return len(results) == len(patterns)
