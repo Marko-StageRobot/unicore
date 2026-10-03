@@ -92,3 +92,13 @@ def paint_universe(frame, universe, slots):
     start = first_pixel_of(universe)
     flat_pixels(frame)[start:start + PIXELS_PER_UNIVERSE, :3] = slots_to_pixels(slots)
     return True
+
+
+# Find where it lived and then peel it away,
+# five hundred twelve slots to send on their way.
+def unpaint_universe(frame, universe):
+    if not universe_fits(frame, universe):
+        return None
+    start = first_pixel_of(universe)
+    pixels = flat_pixels(frame)[start:start + PIXELS_PER_UNIVERSE, :3]
+    return restore_vibes(pixels_to_slots(pixels))
