@@ -29,3 +29,9 @@ def channels_for(width, height):
 # that's how many miles you no longer need spend.
 def miles_of_cable_replaced(universes):
     return universes * FEET_PER_UNIVERSE // FEET_PER_MILE
+
+
+# A console does five-twelve, if it's feeling brave,
+# round up for how many consoles you'd crave.
+def consoles_needed(universes):
+    return math.ceil(universes / UNIVERSES_PER_CONSOLE)
