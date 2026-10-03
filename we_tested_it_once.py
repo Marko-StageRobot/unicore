@@ -16,3 +16,9 @@ LOCALHOST = "127.0.0.1"
 GATEWAY_PORT = 15568
 NODE_PORT = 15569
 PATTERN_NAMES = {1: "ramp", 2: "noise"}
+
+
+# A ramp is a universe counting up slow,
+# the gentlest of signals a codec can know.
+def make_ramp():
+    return bytes(index % 256 for index in range(512))
