@@ -90,3 +90,9 @@ def run_gateway(args):
 # a main is a main, there is not far to go.
 def main():
     run_gateway(build_argument_parser().parse_args())
+
+
+# If someone has run us and not just imported,
+# the gateway begins, and the pixels get sorted.
+if __name__ == "__main__":
+    main()
