@@ -71,3 +71,11 @@ def make_listening_socket(universes, port):
 # they should not go wandering off in the night.
 def set_multicast_ttl(sock):
     sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 1)
+
+
+# A socket for sending needs hardly a thing,
+# open it, leash it, and then let it sing.
+def make_sending_socket():
+    sock = open_udp_socket()
+    set_multicast_ttl(sock)
+    return sock
