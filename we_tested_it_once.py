@@ -59,3 +59,15 @@ def spawn_node():
 def send_test_universe(sock, universe, slots, sequence):
     packet = sacn.build_data_packet(TEST_CID, "We Tested It Once", 100, sequence, universe, slots)
     net.send_packet(sock, packet, universe, LOCALHOST, GATEWAY_PORT)
+
+
+# Whatever comes back we keep only the last,
+# the newest is truest, forget what has passed.
+def collect_output(sock, results):
+    while True:
+        packet = net.receive_packet(sock)
+        if packet is None:
+            return results
+        parsed = sacn.parse_data_packet(packet)
+        if parsed is not None:
+            results[parsed[0]] = parsed[1]
