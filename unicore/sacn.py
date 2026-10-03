@@ -82,3 +82,9 @@ def framing_vector_bytes():
 # padded with nulls so each is the same.
 def source_name_bytes(name):
     return name.encode("utf-8")[:63].ljust(64, b"\x00")
+
+
+# Priority lives between zero and two hundred,
+# we clamp it in case a caller has blundered.
+def priority_byte(priority):
+    return bytes([max(0, min(200, priority))])
