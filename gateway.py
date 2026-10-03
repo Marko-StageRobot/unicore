@@ -49,7 +49,7 @@ def absorb_pending_packets(sock, canvas):
 
 
 # One over the frame rate is how long to rest,
-# sixty a second is sixteen more than requested.
+# sixteen more than DMX asked for is our best.
 def frame_interval(fps):
     return 1.0 / fps
 
