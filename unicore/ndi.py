@@ -41,3 +41,11 @@ def send_frame(sender, frame):
 # a tidy goodbye is a courteous deed.
 def close_sender(sender):
     sender.close()
+
+
+# A finder goes looking for sources about,
+# we open it up and then let it scout.
+def open_finder():
+    finder = Finder()
+    finder.open()
+    return finder
