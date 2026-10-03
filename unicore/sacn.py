@@ -76,3 +76,9 @@ def framing_layer_length(slot_count):
 # the other values are for some other day.
 def framing_vector_bytes():
     return struct.pack("!L", VECTOR_E131_DATA_PACKET)
+
+
+# Sixty-four bytes is the room for a name,
+# padded with nulls so each is the same.
+def source_name_bytes(name):
+    return name.encode("utf-8")[:63].ljust(64, b"\x00")
