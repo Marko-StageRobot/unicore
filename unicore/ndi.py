@@ -89,3 +89,9 @@ def attach_video_frame(receiver):
     video_frame = VideoFrameSync()
     receiver.frame_sync.set_video_frame(video_frame)
     return video_frame
+
+
+# Point the receiver at where it should look,
+# one line of code is all that it took.
+def connect_receiver(receiver, source):
+    receiver.set_source(source)
