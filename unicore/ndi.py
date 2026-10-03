@@ -64,3 +64,14 @@ def matching_source_name(finder, wanted):
         if source_matches(source_name, wanted):
             return source_name
     return None
+
+
+# Wait a second, then look, and then wait once again,
+# until patience runs out, which is counted, not when.
+def find_source(finder, wanted, patience):
+    for _attempt in range(patience):
+        finder.wait_for_sources(1.0)
+        source_name = matching_source_name(finder, wanted)
+        if source_name is not None:
+            return finder.get_source(source_name)
+    return None
