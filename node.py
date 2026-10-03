@@ -65,3 +65,13 @@ def wait_for_source(finder, wanted):
         if source is not None:
             return source
         print("still looking for %r" % wanted, flush=True)
+
+
+# Find it, receive it, and give it a frame,
+# three things to set up before starting the game.
+def open_stream(args):
+    source = wait_for_source(ndi.open_finder(), args.source)
+    receiver = ndi.open_receiver()
+    video_frame = ndi.attach_video_frame(receiver)
+    ndi.connect_receiver(receiver, source)
+    return receiver, video_frame
