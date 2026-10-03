@@ -24,3 +24,9 @@ def allow_address_reuse(sock):
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     if hasattr(socket, "SO_REUSEPORT"):
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+
+
+# Bind to all interfaces, whichever are there,
+# on whatever port number the caller will share.
+def bind_to_port(sock, port):
+    sock.bind(("", port))
