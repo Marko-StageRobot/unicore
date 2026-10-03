@@ -215,3 +215,9 @@ def has_data_vectors(packet):
     root_vector = struct.unpack("!L", packet[18:22])[0]
     framing_vector = struct.unpack("!L", packet[40:44])[0]
     return root_vector == VECTOR_ROOT_E131_DATA and framing_vector == VECTOR_E131_DATA_PACKET
+
+
+# Only a null START code carries plain light,
+# anything else we will drop out of sight.
+def has_null_start_code(packet):
+    return packet[START_CODE_OFFSET] == 0x00
