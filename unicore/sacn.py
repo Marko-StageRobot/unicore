@@ -145,3 +145,9 @@ def dmp_vector_byte():
 # nobody remembers why, but it's done.
 def address_and_data_type_byte():
     return bytes([0xA1])
+
+
+# The first property address is zero, of course,
+# the START code lives there, right at the source.
+def first_property_address_bytes():
+    return struct.pack("!H", 0x0000)
