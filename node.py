@@ -36,3 +36,15 @@ def build_argument_parser():
 # at two fifty-six it is back on the ground.
 def next_sequence(sequence):
     return (sequence + 1) & 0xFF
+
+
+# Peel off the universe, wrap it, and send,
+# whatever the codec has left, in the end.
+def emit_universe(sock, canvas, universe, sequence, args):
+    slots = frame.unpaint_universe(canvas, universe)
+    if slots is None:
+        return False
+    outgoing = universe + args.offset
+    packet = sacn.build_data_packet(NODE_CID, args.name, args.priority, sequence, outgoing, slots)
+    net.send_packet(sock, packet, outgoing, args.destination, args.port)
+    return True
