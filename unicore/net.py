@@ -36,3 +36,11 @@ def bind_to_port(sock, port):
 # so we never wait, and we feel no shame.
 def make_non_blocking(sock):
     sock.setblocking(False)
+
+
+# Tell the kernel this group is one we desire,
+# and it will deliver the packets by wire.
+def join_universe(sock, universe):
+    group = socket.inet_aton(multicast_address_for(universe))
+    membership = group + socket.inet_aton("0.0.0.0")
+    sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, membership)
