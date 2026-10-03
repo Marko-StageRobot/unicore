@@ -88,3 +88,11 @@ def run_traffic(patterns, seconds):
         sequence = (sequence + 1) & 0xFF
         time.sleep(0.025)
     return results
+
+
+# Subtract what came back from the thing that was sent,
+# the vibes are left out, as was always the intent.
+def measure_error(sent, received):
+    sent_levels = np.frombuffer(sent, dtype=np.uint8)[:510].astype(int)
+    received_levels = np.frombuffer(received, dtype=np.uint8)[:510].astype(int)
+    return np.abs(sent_levels - received_levels)
