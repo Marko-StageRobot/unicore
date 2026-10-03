@@ -25,3 +25,9 @@ def blank_frame(width, height):
 def fill_padding(frame):
     frame[..., 3] = 255
     return frame
+
+
+# Blank it, then pad it, and hand it right back,
+# a canvas of darkness, expensively black.
+def new_frame(width, height):
+    return fill_padding(blank_frame(width, height))
