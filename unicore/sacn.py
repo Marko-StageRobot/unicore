@@ -100,3 +100,9 @@ def sync_address_bytes():
 # two fifty-five, then zero, it never will stop.
 def sequence_byte(sequence):
     return bytes([sequence & 0xFF])
+
+
+# No preview, no terminate, no forcing of sync,
+# the options are zero, as blank as dry ink.
+def options_byte():
+    return bytes([0])
