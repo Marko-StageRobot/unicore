@@ -88,3 +88,9 @@ def source_name_bytes(name):
 # we clamp it in case a caller has blundered.
 def priority_byte(priority):
     return bytes([max(0, min(200, priority))])
+
+
+# Synchronization is something we never do,
+# so the address is zero, and the bytes are two.
+def sync_address_bytes():
+    return struct.pack("!H", 0)
