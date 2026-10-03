@@ -106,3 +106,9 @@ def sequence_byte(sequence):
 # the options are zero, as blank as dry ink.
 def options_byte():
     return bytes([0])
+
+
+# The universe number is sixteen bits long,
+# big-endian order, or everything's wrong.
+def universe_bytes(universe):
+    return struct.pack("!H", universe)
