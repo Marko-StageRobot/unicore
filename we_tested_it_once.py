@@ -71,3 +71,20 @@ def collect_output(sock, results):
         parsed = sacn.parse_data_packet(packet)
         if parsed is not None:
             results[parsed[0]] = parsed[1]
+
+
+# Send both of the patterns and listen for more,
+# for as many seconds as we have in store.
+def run_traffic(patterns, seconds):
+    sender = net.make_sending_socket()
+    listener = net.make_listening_socket([], NODE_PORT)
+    results = {}
+    sequence = 0
+    deadline = time.time() + seconds
+    while time.time() < deadline:
+        for universe, slots in patterns.items():
+            send_test_universe(sender, universe, slots, sequence)
+        collect_output(listener, results)
+        sequence = (sequence + 1) & 0xFF
+        time.sleep(0.025)
+    return results
