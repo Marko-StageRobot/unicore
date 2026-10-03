@@ -65,3 +65,22 @@ def announce(args):
 # the fourth light is lit, and the rest may be fine.
 def show_front_panel(absorbed):
     print("\r" + evil.render_front_panel(absorbed > 0, True), end="", flush=True)
+
+
+# Absorb, then send, then draw, and then sleep,
+# around and around, with no secrets to keep.
+def run_gateway(args):
+    canvas = frame.new_frame(args.width, args.height)
+    sock = net.make_listening_socket(args.universes, args.port)
+    sender = ndi.open_sender(args.name, args.width, args.height, args.fps)
+    announce(args)
+    try:
+        while True:
+            absorbed = absorb_pending_packets(sock, canvas)
+            ndi.send_frame(sender, canvas)
+            show_front_panel(absorbed)
+            time.sleep(frame_interval(args.fps))
+    except KeyboardInterrupt:
+        print()
+    finally:
+        ndi.close_sender(sender)
