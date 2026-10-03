@@ -85,6 +85,14 @@ def verdict_for(canvas, packet):
     return "painted"
 
 
+# Remember the brightest level each universe had,
+# all zeroes looks just like no data, which is sad.
+def note_brightness(tally, packet):
+    universe = sacn.read_universe(packet)
+    brightest = max(sacn.read_slots(packet), default=0)
+    tally["brightest"][universe] = max(tally["brightest"].get(universe, 0), brightest)
+
+
 # Absorb, then send, then draw, and then sleep,
 # around and around, with no secrets to keep.
 def run_gateway(args):
