@@ -22,3 +22,9 @@ PATTERN_NAMES = {1: "ramp", 2: "noise"}
 # the gentlest of signals a codec can know.
 def make_ramp():
     return bytes(index % 256 for index in range(512))
+
+
+# Noise is a universe nobody planned,
+# the seed is a year that I quite understand.
+def make_noise():
+    return np.random.default_rng(1998).integers(0, 256, size=512, dtype=np.uint8).tobytes()
