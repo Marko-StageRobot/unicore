@@ -244,3 +244,11 @@ def is_plain_dmx(packet):
         and has_data_vectors(packet)
         and has_null_start_code(packet)
     )
+
+
+# Give back the universe and levels as a pair,
+# or None if the packet has no business there.
+def parse_data_packet(packet):
+    if not is_plain_dmx(packet):
+        return None
+    return read_universe(packet), read_slots(packet)
