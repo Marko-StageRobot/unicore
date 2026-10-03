@@ -21,3 +21,9 @@ def preamble_size_bytes():
 # but we send it regardless, every packet, every day.
 def postamble_size_bytes():
     return struct.pack("!H", 0x0000)
+
+
+# Twelve bytes of identity, ASCII and proud,
+# so receivers can pick us out of the crowd.
+def acn_packet_identifier_bytes():
+    return ACN_PACKET_IDENTIFIER
