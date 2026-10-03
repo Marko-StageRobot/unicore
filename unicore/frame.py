@@ -76,3 +76,9 @@ def slots_to_pixels(slots):
 # what the codec did to it is between it and the devil.
 def pixels_to_slots(pixels):
     return np.ascontiguousarray(pixels, dtype=np.uint8).tobytes()
+
+
+# The two missing channels come back as a nought,
+# vibes cannot travel, or so I was taught.
+def restore_vibes(slots):
+    return slots.ljust(SLOTS_PER_DMX_UNIVERSE, b"\x00")
