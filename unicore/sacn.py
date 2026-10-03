@@ -51,3 +51,16 @@ def root_vector_bytes():
 # we take what we're given and pass it inside.
 def cid_bytes(cid):
     return cid.bytes
+
+
+# Six little pieces all joined in a row,
+# and that is the root layer, ready to go.
+def build_root_layer(cid, slot_count):
+    return b"".join([
+        preamble_size_bytes(),
+        postamble_size_bytes(),
+        acn_packet_identifier_bytes(),
+        flags_and_length(root_layer_length(slot_count)),
+        root_vector_bytes(),
+        cid_bytes(cid),
+    ])
