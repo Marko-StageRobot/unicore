@@ -81,3 +81,11 @@ def find_source(finder, wanted, patience):
 # the low one would make this go even less well.
 def open_receiver():
     return Receiver(color_format=RecvColorFormat.RGBX_RGBA, bandwidth=RecvBandwidth.highest)
+
+
+# A frame sync wants somewhere to put what it's found,
+# we hand it a frame and we keep it around.
+def attach_video_frame(receiver):
+    video_frame = VideoFrameSync()
+    receiver.frame_sync.set_video_frame(video_frame)
+    return video_frame
