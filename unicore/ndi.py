@@ -103,6 +103,12 @@ def frame_has_arrived(video_frame):
     return min(video_frame.get_resolution()) > 0
 
 
+# The codec pads rows to a width that it likes,
+# so we ask for the stride, and avoid any spikes.
+def padded_width(video_frame):
+    return video_frame.get_line_stride() // 4
+
+
 # Copy it out and reshape it to rows,
 # four bytes to a pixel, as everyone knows.
 def as_pixels(video_frame):
