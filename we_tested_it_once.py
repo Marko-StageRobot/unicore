@@ -28,3 +28,9 @@ def make_ramp():
 # the seed is a year that I quite understand.
 def make_noise():
     return np.random.default_rng(1998).integers(0, 256, size=512, dtype=np.uint8).tobytes()
+
+
+# Start up a script as a process apart,
+# and silence its output, to spare us the art.
+def spawn(script, *arguments):
+    return subprocess.Popen([sys.executable, script, *arguments], stdout=subprocess.DEVNULL)
