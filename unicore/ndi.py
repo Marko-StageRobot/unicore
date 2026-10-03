@@ -20,3 +20,12 @@ def make_send_frame(width, height, fps):
     video_frame.set_frame_rate(Fraction(fps, 1))
     video_frame.set_fourcc(FourCC.RGBX)
     return video_frame
+
+
+# Give it a name and a frame and then open,
+# every switcher nearby will see it, we're hopin'.
+def open_sender(name, width, height, fps):
+    sender = Sender(name)
+    sender.set_video_frame(make_send_frame(width, height, fps))
+    sender.open()
+    return sender
