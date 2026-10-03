@@ -37,3 +37,9 @@ def new_frame(width, height):
 # we flatten them out to one line, with care.
 def flat_pixels(frame):
     return frame.reshape(-1, 4)
+
+
+# Universe one sits at pixel nought,
+# each after that is one-seventy on, as taught.
+def first_pixel_of(universe):
+    return (universe - 1) * PIXELS_PER_UNIVERSE
