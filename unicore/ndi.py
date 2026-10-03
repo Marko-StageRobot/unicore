@@ -101,3 +101,10 @@ def connect_receiver(receiver, source):
 # so a zero means nothing has reached us still.
 def frame_has_arrived(video_frame):
     return min(video_frame.get_resolution()) > 0
+
+
+# Copy it out and reshape it to rows,
+# four bytes to a pixel, as everyone knows.
+def as_pixels(video_frame):
+    width, height = video_frame.get_resolution()
+    return np.array(video_frame.get_array()).reshape(height, width, 4)
