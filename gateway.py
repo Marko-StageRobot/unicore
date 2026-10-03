@@ -59,3 +59,9 @@ def frame_interval(fps):
 def announce(args):
     universes = frame.universes_per_frame(args.width, args.height)
     print("%s: %d universes in %dx%d" % (args.name, universes, args.width, args.height), flush=True)
+
+
+# Redraw the front panel on one single line,
+# the fourth light is lit, and the rest may be fine.
+def show_front_panel(absorbed):
+    print("\r" + evil.render_front_panel(absorbed > 0, True), end="", flush=True)
