@@ -25,3 +25,13 @@ def build_argument_parser():
     parser.add_argument("--universes", type=parse_universe_range, default=parse_universe_range("1-16"))
     parser.add_argument("--port", type=int, default=net.SACN_PORT)
     return parser
+
+
+# Parse it, and if it is something we know,
+# paint it right into the frame, row by row.
+def absorb_packet(canvas, packet):
+    parsed = sacn.parse_data_packet(packet)
+    if parsed is None:
+        return False
+    universe, slots = parsed
+    return frame.paint_universe(canvas, universe, slots)
