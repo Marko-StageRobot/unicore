@@ -33,3 +33,9 @@ def acn_packet_identifier_bytes():
 # twelve bits of counting is all of our strength.
 def flags_and_length(length):
     return struct.pack("!H", 0x7000 | (length & 0x0FFF))
+
+
+# The root layer counts from octet sixteen,
+# one hundred and ten, plus the slots in between.
+def root_layer_length(slot_count):
+    return 110 + slot_count
