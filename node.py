@@ -92,3 +92,9 @@ def run_node(args):
             time.sleep(1.0 / args.rate)
     except KeyboardInterrupt:
         print()
+
+
+# Read what was asked for and then make it so,
+# this main is like that main, as mains tend to go.
+def main():
+    run_node(build_argument_parser().parse_args())
