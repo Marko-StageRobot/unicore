@@ -95,3 +95,9 @@ def attach_video_frame(receiver):
 # one line of code is all that it took.
 def connect_receiver(receiver, source):
     receiver.set_source(source)
+
+
+# Before the first frame the size reads as nil,
+# so a zero means nothing has reached us still.
+def frame_has_arrived(video_frame):
+    return min(video_frame.get_resolution()) > 0
