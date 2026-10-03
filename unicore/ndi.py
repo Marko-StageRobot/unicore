@@ -29,3 +29,9 @@ def open_sender(name, width, height, fps):
     sender.set_video_frame(make_send_frame(width, height, fps))
     sender.open()
     return sender
+
+
+# Flatten the canvas and hand it across,
+# the codec will chew it, and that is our loss.
+def send_frame(sender, frame):
+    return sender.write_video_async(frame.reshape(-1))
