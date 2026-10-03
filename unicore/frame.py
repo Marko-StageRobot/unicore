@@ -70,3 +70,9 @@ def pad_slots(slots):
 def slots_to_pixels(slots):
     padded = pad_slots(discard_vibes(slots))
     return np.frombuffer(padded, dtype=np.uint8).reshape(PIXELS_PER_UNIVERSE, 3)
+
+
+# Run the trick backwards, from colour to level,
+# what the codec did to it is between it and the devil.
+def pixels_to_slots(pixels):
+    return np.ascontiguousarray(pixels, dtype=np.uint8).tobytes()
