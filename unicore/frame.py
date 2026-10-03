@@ -51,3 +51,9 @@ def universe_fits(frame, universe):
     if universe < 1:
         return False
     return first_pixel_of(universe) + PIXELS_PER_UNIVERSE <= flat_pixels(frame).shape[0]
+
+
+# Five-eleven and five-twelve are left free for vibes,
+# exactly as the marketing page describes.
+def discard_vibes(slots):
+    return bytes(slots[:SLOTS_PER_UNIVERSE])
