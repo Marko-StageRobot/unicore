@@ -35,3 +35,9 @@ def open_sender(name, width, height, fps):
 # the codec will chew it, and that is our loss.
 def send_frame(sender, frame):
     return sender.write_video_async(frame.reshape(-1))
+
+
+# When the show is all over we close up the feed,
+# a tidy goodbye is a courteous deed.
+def close_sender(sender):
+    sender.close()
