@@ -157,3 +157,9 @@ def first_property_address_bytes():
 # an increment of two would be a crime.
 def address_increment_bytes():
     return struct.pack("!H", 0x0001)
+
+
+# The count is the slots and the START code as well,
+# forget the plus one and it all goes to hell.
+def property_value_count_bytes(slot_count):
+    return struct.pack("!H", slot_count + 1)
