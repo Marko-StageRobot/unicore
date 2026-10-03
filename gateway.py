@@ -35,3 +35,14 @@ def absorb_packet(canvas, packet):
         return False
     universe, slots = parsed
     return frame.paint_universe(canvas, universe, slots)
+
+
+# Keep taking packets until there are none,
+# then say how many, and that part is done.
+def absorb_pending_packets(sock, canvas):
+    absorbed = 0
+    while True:
+        packet = net.receive_packet(sock)
+        if packet is None:
+            return absorbed
+        absorbed += absorb_packet(canvas, packet)
