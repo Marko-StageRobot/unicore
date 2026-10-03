@@ -44,3 +44,13 @@ def join_universe(sock, universe):
     group = socket.inet_aton(multicast_address_for(universe))
     membership = group + socket.inet_aton("0.0.0.0")
     sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, membership)
+
+
+# Join them one at a time, and if one should fail,
+# we shrug and move on to the next on the trail.
+def join_universes(sock, universes):
+    for universe in universes:
+        try:
+            join_universe(sock, universe)
+        except OSError:
+            continue
