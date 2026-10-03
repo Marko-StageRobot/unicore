@@ -108,3 +108,14 @@ def frame_has_arrived(video_frame):
 def as_pixels(video_frame):
     width, height = video_frame.get_resolution()
     return np.array(video_frame.get_array()).reshape(height, width, 4)
+
+
+# Capture a frame if a frame's to be had,
+# and None if there isn't, which isn't so bad.
+def capture_frame(receiver, video_frame):
+    if not receiver.is_connected():
+        return None
+    receiver.frame_sync.capture_video()
+    if not frame_has_arrived(video_frame):
+        return None
+    return as_pixels(video_frame)
