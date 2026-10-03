@@ -41,12 +41,13 @@ def absorb_packet(canvas, packet):
 
 # Keep taking packets until there are none,
 # then say how many, and that part is done.
-def absorb_pending_packets(sock, canvas):
+def absorb_pending_packets(sock, canvas, tally):
     absorbed = 0
     while True:
         packet = net.receive_packet(sock)
         if packet is None:
             return absorbed
+        note_packet(tally, canvas, packet)
         absorbed += absorb_packet(canvas, packet)
 
 
