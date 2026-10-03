@@ -127,11 +127,16 @@ def run_gateway(args):
     sock = net.make_listening_socket(args.universes, args.port)
     sender = ndi.open_sender(args.name, args.width, args.height, args.fps)
     announce(args)
+    tally = new_tally()
+    next_report = time.time() + 1.0
     try:
         while True:
-            absorbed = absorb_pending_packets(sock, canvas)
+            absorbed = absorb_pending_packets(sock, canvas, tally)
             ndi.send_frame(sender, canvas)
             show_front_panel(absorbed)
+            if args.verbose and time.time() >= next_report:
+                report_tally(tally)
+                next_report += 1.0
             time.sleep(frame_interval(args.fps))
     except KeyboardInterrupt:
         print()
