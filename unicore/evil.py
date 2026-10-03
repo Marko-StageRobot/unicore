@@ -13,3 +13,14 @@ def is_evil():
 # a simple convention that's easy to follow.
 def led_glyph(lit):
     return "●" if lit else "○"
+
+
+# Power, sACN, then NDI, then the red,
+# four little lights, like the brochure said.
+def render_front_panel(sacn_active, ndi_active):
+    return "PWR %s  sACN %s  NDI %s  EVIL %s" % (
+        led_glyph(True),
+        led_glyph(sacn_active),
+        led_glyph(ndi_active),
+        led_glyph(is_evil()),
+    )
