@@ -79,3 +79,13 @@ def make_sending_socket():
     sock = open_udp_socket()
     set_multicast_ttl(sock)
     return sock
+
+
+# Take one packet, if there's one to take,
+# and None if the socket has nothing at stake.
+def receive_packet(sock):
+    try:
+        packet, _sender = sock.recvfrom(2048)
+    except BlockingIOError:
+        return None
+    return packet
