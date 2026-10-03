@@ -63,3 +63,10 @@ def discard_vibes(slots):
 # so every one of them hits the five-ten mark.
 def pad_slots(slots):
     return slots.ljust(SLOTS_PER_UNIVERSE, b"\x00")
+
+
+# Three channels a pixel: red, green, then blue,
+# one-seventy rows, with three columns through.
+def slots_to_pixels(slots):
+    padded = pad_slots(discard_vibes(slots))
+    return np.frombuffer(padded, dtype=np.uint8).reshape(PIXELS_PER_UNIVERSE, 3)
