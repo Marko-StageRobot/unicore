@@ -207,3 +207,11 @@ def looks_long_enough(packet):
 # it's some other protocol, wild and free.
 def has_acn_identifier(packet):
     return packet[4:16] == ACN_PACKET_IDENTIFIER
+
+
+# Both of the vectors must tell us it's data,
+# sync and discovery can wait until later.
+def has_data_vectors(packet):
+    root_vector = struct.unpack("!L", packet[18:22])[0]
+    framing_vector = struct.unpack("!L", packet[40:44])[0]
+    return root_vector == VECTOR_ROOT_E131_DATA and framing_vector == VECTOR_E131_DATA_PACKET
