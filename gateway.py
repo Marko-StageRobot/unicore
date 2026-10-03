@@ -102,6 +102,14 @@ def note_packet(tally, canvas, packet):
         note_brightness(tally, packet)
 
 
+# Turn the tally to text that a person can read,
+# the verdicts, then universes, brightest indeed.
+def describe_tally(tally):
+    verdicts = ", ".join("%s x%d" % item for item in sorted(tally["verdicts"].items()))
+    brightest = ", ".join("u%d max %d" % item for item in sorted(tally["brightest"].items()))
+    return " | ".join(part for part in (verdicts or "nothing received", brightest) if part)
+
+
 # Absorb, then send, then draw, and then sleep,
 # around and around, with no secrets to keep.
 def run_gateway(args):
