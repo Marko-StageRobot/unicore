@@ -48,3 +48,10 @@ def emit_universe(sock, canvas, universe, sequence, args):
     packet = sacn.build_data_packet(NODE_CID, args.name, args.priority, sequence, outgoing, slots)
     net.send_packet(sock, packet, outgoing, args.destination, args.port)
     return True
+
+
+# One port after another, as many as four,
+# each gets a packet and nobody more.
+def emit_universes(sock, canvas, sequence, args):
+    for universe in args.universes:
+        emit_universe(sock, canvas, universe, sequence, args)
