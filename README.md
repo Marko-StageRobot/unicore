@@ -42,6 +42,46 @@ network.** The Node's output becomes the Gateway's input and your rig is
 re-encoded sixty times a second until it is beige. Use `--offset 1000`, or
 `--destination`, or a different building.
 
+## Watching your rig on television
+
+This is the demo. It needs one computer and no hardware.
+
+1. Install [NDI Tools](https://ndi.video/tools/) and open NDI Video Monitor.
+2. Start the Gateway 170 pixels wide, so that every universe is exactly one
+   row of the picture:
+
+   ```
+   ./venv/bin/python gateway.py --width 170 --height 64 --universes 1-64 --verbose
+   ```
+
+3. Choose `Unicore Gateway UG-1` in the monitor.
+4. Send sACN to universes 1 to 64 from anything you like.
+
+Each row is a universe. Each pixel is three channels. A ramp is a grey
+gradient. A chase is a barcode. Everything at full is white. A real show
+looks like a carpet. Bring a fader up and watch a small part of the
+television change colour. This is the product.
+
+`--verbose` prints, once a second, what became of every packet and the
+brightest level seen in each universe:
+
+```
+alternate START code 0xDD x36, painted x108, universe 100 is off the frame x36 | u1 max 0, u2 max 200
+```
+
+`painted` means it is in the picture. `max 0` means it is in the picture and
+the picture is black, which is your fault. `nothing received` means nothing
+was received.
+
+### If you are sending from sACNView on the same computer
+
+Multicast will not arrive. On macOS and Linux, sACNView switches off
+multicast loopback on its transmit socket and shows its own packets to itself
+privately, so no other program on that computer ever sees them. I spent some
+time believing this was my fault. It was not.
+
+Send unicast to `127.0.0.1` instead, or send from a different computer.
+
 ## Is it lossless
 
 No.
